@@ -12,6 +12,7 @@ export interface MyTask {
     endDate?: Date | string,
     createdOn?: Date | string,
     modifiedOn?:Date | string,
+    priority?: number
 }
 
 export const createTask = (task: MyTask) => {
@@ -32,6 +33,13 @@ export const getTasks = () => {
 export const updateTask = (task: MyTask) => {
     return update(ref(firebaseDB, '/tasks/' + task.id), {
         ...task
+    });
+};
+
+export const updateTaskPriority = (id: string, priority: number) => {
+    console.log('yesdkjkd');
+    return update(ref(firebaseDB, '/tasks/' + id), {
+        priority: priority
     });
 };
 

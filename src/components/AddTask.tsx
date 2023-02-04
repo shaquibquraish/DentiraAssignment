@@ -11,6 +11,7 @@ const AddTask = (props: any) => {
     const [endDate, setEndDate] = useState<Date | undefined>(undefined);
     const [showModal, setShowModal] = useState(false);
 
+
     const handleClose = () => setShowModal(false);
     const handleShow = () => {
         setTaskName("");
@@ -30,7 +31,8 @@ const AddTask = (props: any) => {
             createdOn: new Date(),
             modifiedOn: new Date(),
             startDate: startDate,
-            endDate: endDate
+            endDate: endDate,
+            priority: Number(props?.listSize) + 1
         };
 
         createTask(taskData).then((data) => {

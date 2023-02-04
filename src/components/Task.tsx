@@ -1,11 +1,26 @@
 import React from "react";
 import { MyTask } from "../utils/taskService";
 import './Task.scss';
+import { useDrop, useDrag, DragSourceMonitor } from 'react-dnd';
 
-const TaskCard = ({ id, title, status, startDate, endDate, handleDelete, handleUpdate }: any) => {
+const TaskCard = ({ id, title, status, startDate, endDate, index, handleDelete, handleUpdate, moveCard }: any) => {
+
+    const [{ isDragging }, drag] = useDrag({
+        type:'CARD',
+        item: { id, index },
+        collect: (monitor: DragSourceMonitor) => ({
+            isDragging: monitor.isDragging(),
+        }),
+    });
+    const [, drop] = useDrop({
+        accept: 'CARD',
+        drop: (item: any) => {
+            moveCard(item.id, item.index, index, id);
+        },
+    });
     return (
-
-        <div className="col-md-3 col-sm-4 col-lg-3 col-xs-6 col-12">
+       <div ref={drop} className="col-md-3 col-sm-4 col-lg-3 col-xs-6 col-12">
+        <div ref={drag}>
             <div className="task-card mb-3">
                 <div className="task-details">
                     <p>Title: <br /> {title}</p>
@@ -24,7 +39,7 @@ const TaskCard = ({ id, title, status, startDate, endDate, handleDelete, handleU
                 </div>
             </div>
         </div>
-
+        </div>
     );
 };
 
