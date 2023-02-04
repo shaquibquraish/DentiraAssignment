@@ -7,7 +7,11 @@ export interface MyTask {
     id?: string,
     title: string,
     status: TaskStatus,
-    isDeleted?: TaskState
+    isDeleted?: TaskState,
+    startDate?: Date,
+    endDate?: Date
+    createdOn?: Date,
+    modifiedOn?: Date
 }
 
 export const createTask = (task: MyTask) => {
@@ -27,8 +31,7 @@ export const getTasks = () => {
 
 export const updateTask = (task: MyTask) => {
     return update(ref(firebaseDB, '/tasks/' + task.id), {
-        title: task.title,
-        status: task.status
+        ...task
     });
 };
 

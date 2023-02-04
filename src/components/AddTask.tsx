@@ -7,23 +7,30 @@ import './AddTask.scss';
 const AddTask = (props: any) => {
     const [taskName, setTaskName] = useState("");
     const [taskStatus, setTaskStatus] = useState<TaskStatus>(TaskStatus.TODO);
-
+    const [startDate, setStartDate] = useState<Date | undefined>(new Date());
+    const [endDate, setEndDate] = useState<Date | undefined>(undefined);
     const [showModal, setShowModal] = useState(false);
 
     const handleClose = () => setShowModal(false);
-    const handleShow = () =>{
+    const handleShow = () => {
         setTaskName("");
         setTaskStatus(TaskStatus.TODO);
+        setStartDate(new Date());
+        setEndDate(undefined);
         setShowModal(true);
 
-    } 
+    }
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
         const taskData: MyTask = {
             title: taskName,
             status: taskStatus,
-            isDeleted: TaskState.ACTIVE
+            isDeleted: TaskState.ACTIVE,
+            createdOn: new Date(),
+            modifiedOn: new Date(),
+            startDate: startDate,
+            endDate: endDate
         };
 
         createTask(taskData).then((data) => {
@@ -65,6 +72,22 @@ const AddTask = (props: any) => {
                                     <option value={TaskStatus.INPROGRESS}>In Progress</option>
                                     <option value={TaskStatus.COMPLETED}>Completed</option>
                                 </select>
+                            </label>
+                            <label>
+                                Start Date:
+                                <input
+                                    type="date"
+                                    value={startDate ? startDate.toISOString().split('T')[0] : ''}
+                                    onChange={(e) => setStartDate(new Date(e.target.value))}
+                                />
+                            </label>
+                            <label>
+                                End Date:
+                                <input
+                                    type="date"
+                                    value={endDate ? endDate.toISOString().split('T')[0] : ''}
+                                    onChange={(e) => setEndDate(new Date(e.target.value))}
+                                />
                             </label>
                             <button type="submit">Submit</button>
                             <span className="close" onClick={handleClose} >&times;</span>

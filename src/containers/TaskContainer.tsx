@@ -66,7 +66,7 @@ const TaskContainer = () => {
   return (
     <div>
          <div className="row">
-        {tasks?.length > 0 ? tasks.map(task => <TaskCard key={task.id} id={task.id} title={task.title} status={task.status} handleDelete={handleDelete} handleUpdate={handleUpdate}/>): <div>Loading...</div>}
+        {tasks?.length > 0 ? tasks.map(task => <TaskCard key={task.id} id={task.id} title={task.title} status={task.status}  startDate={task.startDate} endDate={task.endDate} handleDelete={handleDelete} handleUpdate={handleUpdate}/>): <div>Loading...</div>}
         </div>
         <AddTask dataSubmitted={handleDataSubmitted}/>
         {showUpdatePopUp? <UpdateTask {...taskToUpdate} handlePopUp={handleUpdateCLose} dataSubmitted={handleDataSubmitted}/>: null}
