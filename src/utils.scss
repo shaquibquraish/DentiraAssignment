@@ -1,0 +1,43 @@
+@use "sass:math";
+@import "variables";
+
+
+//all mixins
+@mixin cust-gap($type: margin, $direction: top, $val: 1) {
+    #{$type}-#{$direction}: $val* $gap-gutter1;
+}
+
+//common css
+@for $i from 1 through 8 {
+    .mt-#{$i} {
+        @include cust-gap(margin,top, $i);
+    }
+
+    .mb-#{$i} {
+        @include cust-gap(margin,bottom, $i);
+    }
+
+    .ml-#{$i} {
+        @include cust-gap(margin,left, $i);
+    }
+
+    .mr-#{$i} {
+        @include cust-gap(margin,right, $i );
+    }
+
+    .pt-#{$i} {
+        @include cust-gap(padding,top, $i);
+    }
+
+    .pb-#{$i} {
+        @include cust-gap(padding,bottom, $i);
+    }
+
+    .pl-#{$i} {
+        @include cust-gap(padding,left, $i);
+    }
+
+    .pr-#{$i} {
+        @include cust-gap(padding,right, $i );
+    }
+}

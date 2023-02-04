@@ -1,0 +1,16 @@
+@import '../../../variables.scss'; 
+
+.form-control{
+    &:focus {
+        -webkit-box-shadow: none;
+        box-shadow: none;
+      }
+}
+
+.form-error{
+    border-color: red;
+    &:focus{
+        border-color: red;
+    }
+  }
+

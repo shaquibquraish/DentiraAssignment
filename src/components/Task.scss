@@ -1,0 +1,28 @@
+.task-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    transition: all 0.3s;
+  
+    &:hover {
+      box-shadow: 0 0 10px gray;
+  
+      .close-icon {
+        display: block;
+      }
+    }
+  
+    .task-details {
+      width: 75%;
+    }
+  
+    .close-icon {
+      display: none;
+      font-size: 20px;
+      cursor: pointer;
+    }
+  }
+  
