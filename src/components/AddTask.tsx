@@ -10,7 +10,12 @@ const AddTask = (props: any) => {
     const [showModal, setShowModal] = useState(false);
 
     const handleClose = () => setShowModal(false);
-    const handleShow = () => setShowModal(true);
+    const handleShow = () =>{
+        setTaskName("");
+        setTaskStatus("ToDo");
+        setShowModal(true);
+
+    } 
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
