@@ -12,10 +12,10 @@
         box-shadow: 0 0 10px gray;
 
         .close-icon {
-            display: none;
+            display: block;
         }
         .update-icon {
-            display: none;
+            display: block;
         }
     }
 
@@ -33,13 +33,13 @@
     }
 
     .close-icon {
-        display: block;
+        display: none;
         font-size: 20px;
         cursor: pointer;
     }
 
     .update-icon {
-        display: block;
+        display: none;
         font-size: 20px;
         cursor: pointer;
     }
