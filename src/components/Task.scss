@@ -7,6 +7,7 @@
     border-radius: 10px;
     transition: all 0.3s;
     position: relative;
+    background-color: whitesmoke;
 
     &:hover {
         box-shadow: 0 0 10px gray;
@@ -23,7 +24,7 @@
         width: 75%;
     }
     .icons{
-        width: 80px;
+        width: 60px;
         display: flex;
         justify-content: space-around;
         position: absolute;
@@ -34,13 +35,13 @@
 
     .close-icon {
         display: none;
-        font-size: 20px;
+        font-size: 15px;
         cursor: pointer;
     }
 
     .update-icon {
         display: none;
-        font-size: 20px;
+        font-size: 15px;
         cursor: pointer;
     }
 }

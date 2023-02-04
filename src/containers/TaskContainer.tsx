@@ -51,6 +51,7 @@ const TaskContainer = () => {
     };
 
     const handleUpdate = (task: MyTask) => {
+        console.log('yesyeys')
         setTaskToUpdate({...task})
         setShowUpdatePopUp(true);
        
@@ -63,7 +64,9 @@ const TaskContainer = () => {
     
   return (
     <div>
-        {tasks?.length > 0 && tasks.map(task => <TaskCard key={task.id} id={task.id} title={task.title} status={task.status} handleDelete={handleDelete} handleUpdate={handleUpdate}/>)}
+         <div className="row">
+        {tasks?.length > 0 ? tasks.map(task => <TaskCard key={task.id} id={task.id} title={task.title} status={task.status} handleDelete={handleDelete} handleUpdate={handleUpdate}/>): <div>Loading...</div>}
+        </div>
         <AddTask dataSubmitted={handleDataSubmitted}/>
         {showUpdatePopUp? <UpdateTask {...taskToUpdate} handlePopUp={handleUpdateCLose} dataSubmitted={handleDataSubmitted}/>: null}
     </div>

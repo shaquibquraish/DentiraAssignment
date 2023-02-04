@@ -1,36 +1,80 @@
-$modal-background-color: rgba(0, 0, 0, 0.5);
-$modal-content-background-color: white;
-$modal-content-padding: 1rem;
-$modal-content-border-radius: 5px;
-$modal-content-max-width: 500px;
-$modal-content-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-$close-button-top: 10px;
-$close-button-right: 10px;
-
 .modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: $modal-background-color;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  .modal-content {
-    background-color: $modal-content-background-color;
-    padding: $modal-content-padding;
-    border-radius: $modal-content-border-radius;
-    max-width: $modal-content-max-width;
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
-    box-shadow: $modal-content-box-shadow;
-
-    .close {
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+  
+    .modal-content {
       position: absolute;
-      top: $close-button-top;
-      right: $close-button-right;
-      cursor: pointer;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: white;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 0 10px #ccc;
+      width: 500px;
+      height: auto;
+  
+      h3 {
+        text-align: center;
+        margin-bottom: 1rem;
+      }
+  
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+  
+        label {
+          margin-bottom: 1rem;
+  
+          input[type="text"] {
+            width: 100%;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+          }
+  
+          select {
+            width: 100%;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+            option {
+              font-size: 1rem;
+            }
+          }
+        }
+  
+        button[type="submit"] {
+          margin-top: 1rem;
+          padding: 0.5rem 1rem;
+          background-color: #4CAF50;
+          color: white;
+          border-radius: 0.5rem;
+          border: none;
+          font-size: 1rem;
+          cursor: pointer;
+          &:hover {
+            background-color: #3e8e41;
+          }
+        }
+      }
+  
+      .close {
+        position: absolute;
+        top: 0;
+        right: 0;
+        font-size: 2rem;
+        cursor: pointer;
+      }
     }
   }
-}
+  
