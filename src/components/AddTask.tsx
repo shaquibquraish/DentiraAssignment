@@ -1,18 +1,19 @@
 import React, { useState } from "react";
+import { TaskState, TaskStatus } from "../utils/enums";
 import { createTask, getTasks, MyTask } from "../utils/taskService";
 
 import './AddTask.scss';
 
 const AddTask = (props: any) => {
     const [taskName, setTaskName] = useState("");
-    const [taskStatus, setTaskStatus] = useState("ToDo");
+    const [taskStatus, setTaskStatus] = useState<TaskStatus>(TaskStatus.TODO);
 
     const [showModal, setShowModal] = useState(false);
 
     const handleClose = () => setShowModal(false);
     const handleShow = () =>{
         setTaskName("");
-        setTaskStatus("ToDo");
+        setTaskStatus(TaskStatus.TODO);
         setShowModal(true);
 
     } 
@@ -22,7 +23,7 @@ const AddTask = (props: any) => {
         const taskData: MyTask = {
             title: taskName,
             status: taskStatus,
-            isDeleted: 0
+            isDeleted: TaskState.ACTIVE
         };
 
         createTask(taskData).then((data) => {
@@ -59,10 +60,10 @@ const AddTask = (props: any) => {
                             </label>
                             <label>
                                 Status:
-                                <select value={taskStatus} onChange={(e) => setTaskStatus(e.target.value)}>
-                                    <option value="ToDo">To Do</option>
-                                    <option value="InProgress">In Progress</option>
-                                    <option value="Completed">Completed</option>
+                                <select value={taskStatus} onChange={(e) => setTaskStatus(e.target.value as TaskStatus)}>
+                                    <option value={TaskStatus.TODO}>To Do</option>
+                                    <option value={TaskStatus.INPROGRESS}>In Progress</option>
+                                    <option value={TaskStatus.COMPLETED}>Completed</option>
                                 </select>
                             </label>
                             <button type="submit">Submit</button>

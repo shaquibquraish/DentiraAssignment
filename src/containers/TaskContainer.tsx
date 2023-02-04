@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import AddTask from '../components/AddTask';
 import TaskCard from '../components/Task';
 import UpdateTask from '../components/UpdateTask';
+import { TaskState, TaskStatus } from '../utils/enums';
 import { createTask, deleteTask, getTasks, MyTask } from '../utils/taskService'
 
 const TaskContainer = () => {
@@ -10,14 +11,14 @@ const TaskContainer = () => {
 
     const [showUpdatePopUp , setShowUpdatePopUp] = useState(false);
 
-    const [taskToUpdate , setTaskToUpdate] = useState<MyTask>({id:'', title:'', status:''});
+    const [taskToUpdate , setTaskToUpdate] = useState<MyTask>({id:'', title:'', status:TaskStatus.TODO});
 
 
 
     const getTaskFromFireBase= () => {
         getTasks().then((snapshot) => {
             if (snapshot.exists()) {
-              const activeTasks = Object.values(snapshot.val()).filter((task: any) => task.isDeleted !==1).map(task => task as MyTask);
+              const activeTasks = Object.values(snapshot.val()).filter((task: any) => task.isDeleted !== TaskState.DELETED).map(task => task as MyTask);
               setTasks(activeTasks);
             } else {
               console.log("No data available");

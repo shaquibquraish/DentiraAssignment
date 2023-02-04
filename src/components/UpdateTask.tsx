@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { TaskState, TaskStatus } from "../utils/enums";
 import { createTask, getTasks, MyTask, updateTask } from "../utils/taskService";
 
 import './UpdateTask.scss';
@@ -22,7 +23,7 @@ const UpdateTask = ({id, title, status, handlePopUp, dataSubmitted}: any) => {
             id:id,
             title: taskName,
             status: taskStatus,
-            isDeleted: 0
+            isDeleted: TaskState.ACTIVE
         };
 
         updateTask(taskData).then((data) => {
@@ -56,9 +57,9 @@ const UpdateTask = ({id, title, status, handlePopUp, dataSubmitted}: any) => {
                             <label>
                                 Status:
                                 <select value={taskStatus} onChange={(e) => setTaskStatus(e.target.value)}>
-                                    <option value="ToDo">To Do</option>
-                                    <option value="InProgress">In Progress</option>
-                                    <option value="Completed">Completed</option>
+                                <option value={TaskStatus.TODO}>To Do</option>
+                                    <option value={TaskStatus.INPROGRESS}>In Progress</option>
+                                    <option value={TaskStatus.COMPLETED}>Completed</option>
                                 </select>
                             </label>
                             <button type="submit">Submit</button>
