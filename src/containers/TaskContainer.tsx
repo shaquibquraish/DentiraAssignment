@@ -46,7 +46,6 @@ const TaskContainer = () => {
     <div>
         {tasks?.length > 0 && tasks.map(task => <TaskCard key={task.id} id={task.id} title={task.title} status={task.status} handleDelete={handleDelete}/>)}
         <AddTask dataSubmitted={handleDataSubmitted}/>
-
     </div>
   )
 }

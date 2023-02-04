@@ -3,9 +3,9 @@ import { createTask, getTasks, MyTask } from "../utils/taskService";
 
 import './AddTask.scss';
 
-const AddTask = (props:any) => {
+const AddTask = (props: any) => {
     const [taskName, setTaskName] = useState("");
-    const [taskStatus, setTaskStatus] = useState("toDo");
+    const [taskStatus, setTaskStatus] = useState("ToDo");
 
     const [showModal, setShowModal] = useState(false);
 
@@ -17,9 +17,9 @@ const AddTask = (props:any) => {
         const taskData: MyTask = {
             title: taskName,
             status: taskStatus,
-            isDeleted:0
-          };
-      
+            isDeleted: 0
+        };
+
         createTask(taskData).then((data) => {
             console.log('task created successfuly', JSON.stringify(data));
             props.dataSubmitted();
@@ -29,14 +29,16 @@ const AddTask = (props:any) => {
             handleClose();
         })
 
-      
+
     };
 
     return (
         <>
-            <button type="button" onClick={handleShow}>
-                Add Task
-            </button>
+            <div className="text-center">
+                <button className="btn btn-primary mt-2 " type="button" onClick={handleShow}>
+                    Add Task
+                </button>
+            </div>
             {showModal && (
                 <div className="modal">
                     <div className="modal-content">
@@ -53,9 +55,9 @@ const AddTask = (props:any) => {
                             <label>
                                 Status:
                                 <select value={taskStatus} onChange={(e) => setTaskStatus(e.target.value)}>
-                                    <option value="toDo">To Do</option>
-                                    <option value="inProgress">In Progress</option>
-                                    <option value="completed">Completed</option>
+                                    <option value="ToDo">To Do</option>
+                                    <option value="InProgress">In Progress</option>
+                                    <option value="Completed">Completed</option>
                                 </select>
                             </label>
                             <button type="submit">Submit</button>

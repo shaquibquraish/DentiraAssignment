@@ -6,23 +6,41 @@
     border: 1px solid lightgray;
     border-radius: 10px;
     transition: all 0.3s;
-  
+    position: relative;
+
     &:hover {
-      box-shadow: 0 0 10px gray;
-  
-      .close-icon {
-        display: block;
-      }
+        box-shadow: 0 0 10px gray;
+
+        .close-icon {
+            display: block;
+        }
+        .update-icon {
+            display: block;
+        }
     }
-  
+
     .task-details {
-      width: 75%;
+        width: 75%;
     }
-  
+    .icons{
+        width: 80px;
+        display: flex;
+        justify-content: space-around;
+        position: absolute;
+        right: 10px;
+        top: 10px;
+
+    }
+
     .close-icon {
-      display: none;
-      font-size: 20px;
-      cursor: pointer;
+        display: block;
+        font-size: 20px;
+        cursor: pointer;
     }
-  }
-  
+
+    .update-icon {
+        display: block;
+        font-size: 20px;
+        cursor: pointer;
+    }
+}
