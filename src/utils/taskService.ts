@@ -8,10 +8,10 @@ export interface MyTask {
     title: string,
     status: TaskStatus,
     isDeleted?: TaskState,
-    startDate?: Date,
-    endDate?: Date
-    createdOn?: Date,
-    modifiedOn?: Date
+    startDate?: Date | string,
+    endDate?: Date | string,
+    createdOn?: Date | string,
+    modifiedOn?:Date | string,
 }
 
 export const createTask = (task: MyTask) => {

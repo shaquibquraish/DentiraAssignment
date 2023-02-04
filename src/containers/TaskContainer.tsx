@@ -18,7 +18,12 @@ const TaskContainer = () => {
     const getTaskFromFireBase= () => {
         getTasks().then((snapshot) => {
             if (snapshot.exists()) {
-              const activeTasks = Object.values(snapshot.val()).filter((task: any) => task.isDeleted !== TaskState.DELETED).map(task => task as MyTask);
+              const activeTasks = Object.values(snapshot.val()).
+              filter((task: any) => task.isDeleted !== TaskState.DELETED).
+              map(task => task as MyTask)
+              .sort((task1, task2) => {
+               return ( new Date(task2?.modifiedOn as string).getTime() ) -  ( new Date(task1?.modifiedOn as string).getTime() )
+            });
               setTasks(activeTasks);
             } else {
               console.log("No data available");
