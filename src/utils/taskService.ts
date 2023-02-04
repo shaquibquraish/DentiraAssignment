@@ -25,8 +25,8 @@ export const getTasks = () => {
    
 };
 
-export const updateTask =(id: string, task: MyTask) => {
-    return  update(ref(firebaseDB,'/tasks/'+ id),{
+export const updateTask =(task: MyTask) => {
+    return  update(ref(firebaseDB,'/tasks/'+ task.id),{
         title: task.title,
         status: task.status
      }).then((data) => {

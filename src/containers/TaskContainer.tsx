@@ -1,11 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import AddTask from '../components/AddTask';
 import TaskCard from '../components/Task';
+import UpdateTask from '../components/UpdateTask';
 import { createTask, deleteTask, getTasks, MyTask } from '../utils/taskService'
 
 const TaskContainer = () => {
    
     const [tasks , setTasks] = useState<MyTask[]>([]);
+
+    const [showUpdatePopUp , setShowUpdatePopUp] = useState(false);
+
+    const [taskToUpdate , setTaskToUpdate] = useState<MyTask>({id:'', title:'', status:''});
+
+
 
     const getTaskFromFireBase= () => {
         getTasks().then((snapshot) => {
@@ -32,6 +39,8 @@ const TaskContainer = () => {
         getTaskFromFireBase();
     };
 
+   
+
     const handleDelete = (id: string) => {
         deleteTask(id).then((data) => {
             getTaskFromFireBase();
@@ -41,11 +50,22 @@ const TaskContainer = () => {
         })
     };
 
+    const handleUpdate = (task: MyTask) => {
+        setTaskToUpdate({...task})
+        setShowUpdatePopUp(true);
+       
+    };
+    const handleUpdateCLose = (task: MyTask) => {
+        setShowUpdatePopUp(false);
+    };
+
+
     
   return (
     <div>
-        {tasks?.length > 0 && tasks.map(task => <TaskCard key={task.id} id={task.id} title={task.title} status={task.status} handleDelete={handleDelete}/>)}
+        {tasks?.length > 0 && tasks.map(task => <TaskCard key={task.id} id={task.id} title={task.title} status={task.status} handleDelete={handleDelete} handleUpdate={handleUpdate}/>)}
         <AddTask dataSubmitted={handleDataSubmitted}/>
+        {showUpdatePopUp? <UpdateTask {...taskToUpdate} handlePopUp={handleUpdateCLose} dataSubmitted={handleDataSubmitted}/>: null}
     </div>
   )
 }

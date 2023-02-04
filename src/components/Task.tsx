@@ -11,7 +11,7 @@ const TaskCard = ({ id, title, status, handleDelete, handleUpdate }: any) => {
             </div>
             <div className="icons">
                 <div className="update-icon">
-                    <i className="fa fa-pencil" onClick={() => handleUpdate(id)}></i>
+                    <i className="fa fa-pencil" onClick={() => handleUpdate({id, title, status})}></i>
                 </div>
                 <div className="close-icon">
                     <i className="fa fa-times" onClick={() => handleDelete(id)}></i>

@@ -1,0 +1,36 @@
+$modal-background-color: rgba(0, 0, 0, 0.5);
+$modal-content-background-color: white;
+$modal-content-padding: 1rem;
+$modal-content-border-radius: 5px;
+$modal-content-max-width: 500px;
+$modal-content-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+$close-button-top: 10px;
+$close-button-right: 10px;
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: $modal-background-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .modal-content {
+    background-color: $modal-content-background-color;
+    padding: $modal-content-padding;
+    border-radius: $modal-content-border-radius;
+    max-width: $modal-content-max-width;
+    width: 100%;
+    box-shadow: $modal-content-box-shadow;
+
+    .close {
+      position: absolute;
+      top: $close-button-top;
+      right: $close-button-right;
+      cursor: pointer;
+    }
+  }
+}
